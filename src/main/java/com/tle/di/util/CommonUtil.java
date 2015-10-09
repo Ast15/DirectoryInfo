@@ -65,7 +65,7 @@ public class CommonUtil {
 		StringBuffer result=new StringBuffer();
 		result.append(file.getAbsolutePath());
 		
-		double size=(double)file.length()/(1024*1024);//Need to work on this if size is too large...
+		double size=(double)file.length()/(1024*1024);
 		result.append(","+size+" MB");
 		
 		Date d=new Date(file.lastModified());

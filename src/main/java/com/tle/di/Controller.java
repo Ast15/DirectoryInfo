@@ -12,42 +12,49 @@ public class Controller {
 		// TODO Auto-generated method stub
 		
 		try{
-		
-			String directoryAbsPath="/Users/tle/test1/";
+			
+			//Three input parameters
+			String directoryAbsPath="/Users/tle/test1/";//This must be an absolute path
+			int searchOption=0;//0: BFS, 1: DFS, 2: Recursion
+			boolean outPutA=false;//true: print outPutA, false: print OutputB
+			
+			
+
 			List<String>result=null;
-					
 			
-			System.out.println("==============Print OutputB START==============");
-			System.out.println("**************Print DFS result***************");
-			result=CommonUtil.DfsListFiles(directoryAbsPath);
-			for(String s: result){
-				System.out.println(s);				
+			switch (searchOption){
+				case 0: result=CommonUtil.BfsListFiles(directoryAbsPath); 
+						System.out.println("*****Using BFS*****");
+						break;
+				
+				case 1: result=CommonUtil.DfsListFiles(directoryAbsPath); 
+						System.out.println("*****Using DFS*****");
+						break;
+				
+				case 2: result=new LinkedList<String>(); 
+						CommonUtil.RecursiveListFiles(directoryAbsPath, result);
+						System.out.println("*****Using Recursion*****");		
+						break;
+				
+				default:System.err.println("Invalid search option");
+						break;			
 			}
 			
-			System.out.println("**************Print BFS result***************");
-			result=CommonUtil.BfsListFiles(directoryAbsPath);
-			for(String s: result){
-				System.out.println(s);				
+			if(result!=null){
+				if(outPutA){
+					System.out.println("*****Printing OutputA*****");
+					for(String s: result){
+						String[]temp=s.split(",");
+						System.out.println(temp[0]);
+					}
+				}
+				else{
+					System.out.println("*****Printing OutputB*****");
+					for(String s: result){
+						System.out.println(s);
+					}
+				}
 			}
-			
-			System.out.println("**************Print Recursive result***************");
-			result=new LinkedList<String>();
-			CommonUtil.RecursiveListFiles(directoryAbsPath, result);;
-			for(String s: result){
-				System.out.println(s);				
-			}
-			System.out.println("==============Print OutputB END==============");
-			
-			
-			
-			System.out.println("==============Print OutputA START==============");
-			System.out.println("**************Print DFS result***************");
-			result=CommonUtil.DfsListFiles(directoryAbsPath);
-			for(String s: result){
-				String[]temp=s.split(",");
-				System.out.println(temp[0]);
-			}
-			System.out.println("==============Print OutputA END==============");
 
 		}
 		
